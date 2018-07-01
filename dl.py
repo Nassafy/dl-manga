@@ -3,9 +3,6 @@ import re
 from bs4 import BeautifulSoup
 import requests
 
-def getChapter():
-    return 900
-
 def get_url_image(chapter, page):
     page = requests.get(f"https://scantrad.fr/mangas/one-piece/{chapter}?page={page}")
     soup = BeautifulSoup(page.content, "html.parser")
@@ -33,5 +30,12 @@ def dl_chapter(chapter):
         dowload_image(url, f"./{chapter}/{page}")
         page += 1
         url = get_url_image(chapter, page)
+
+def check_chapter(chapter):
+    url = get_url_image(chapter, 1)
+    return bool(url)
+
 if __name__ == '__main__':
-    print("main")
+    for i in range(900, 910):
+        b = check_chapter(i)
+        print(f"{i} : {b}")
