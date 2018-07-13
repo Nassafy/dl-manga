@@ -27,8 +27,8 @@ def dl_chapter(chapter):
     page = 1
     url = get_url_image(chapter, page)
     while url:
-        page = str(page).zfill(2)
-        dowload_image(url, f"./{chapter}/{page}")
+        str_page = str(page).zfill(2)
+        dowload_image(url, f"./{chapter}/{str_page}")
         page += 1
         url = get_url_image(chapter, page)
 
